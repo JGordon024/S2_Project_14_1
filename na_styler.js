@@ -20,29 +20,54 @@
       Returns a random integer from 0 up to size-1.
 
 */
-window.addEventListener("load", setStyles)
+window.addEventListener("load", setStyles);
 
 function setStyles() {
       var styleNum = randInt(5);
-      var fancySheet = document.createElement("link")
+      var fancySheet = document.createElement("link");
       fancySheet.setAttribute("rel", "styleSheet");
       fancySheet.setAttribute("id", "fancySheet");
       fancySheet.setAttribute("href", "na_style_" + styleNum + ".css");
       document.head.appendChild(fancySheet);
       var figBox = document.createElement("figure");
       figBox.setAttribute("id", "styleThumbs");
-      document.getElementById("box").appendChild("figBox")
+      document.getElementById("box").appendChild(figBox);
 
       for (var i = 0; i <= 4; i++) {
             var sheetImg = document.createElement("img");
-            sheetImg.setAttribute("src", "na_small_" + i + ".css")
-            sheetImg.setAttribute("src", "na_style_" + i + ".css")
-            sheetImg.addEventListener(function () {
-                  fancySheet.setAttribute("")
+            sheetImg.setAttribute("src", "na_small_" + i + ".png");
+            sheetImg.setAttribute("alt", "na_style_" + i + ".css");
+            sheetImg.addEventListener("click", function (e) {
 
-                  window.addEventListener("load", )
+                  document.getElementById("fancySheet").setAttribute("href", e.target.alt);
             })
+            figBox.appendChild(sheetImg);
       }
+      var styleThumbs = document.createElement("style");
+      document.head.appendChild(styleThumbs);
+
+      styleThumbs.styleSheets[document.styleSheets.length - 1]
+            .insertRule(
+                  "figure#styleThumbs { \
+                  position: absolute; \
+                  left: 0; \
+                  bottom: 0px; \
+                  }", 0);
+
+      styleThumbs.styleSheets[document.styleSheets.length - 1]
+            .insertRule(
+                  "figure#styleThumbs img{ \
+                  outline: 1px solid black; \
+                  cursor: pointer; \
+                  opacity: 0.75; \
+                  }", 1);
+
+      styleThumbs.styleSheets[document.styleSheets.length - 1]
+            .insertRule(
+                  "figure#styleThumbs img{ \
+                  outline: 1px solid red; \
+                  opacity: 1.0; \
+                  }", 2);
 }
 
 function randInt(size) {
